@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/app_controller.dart';
+import 'package:flutter_application_1/widgets/custom_drawer.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() {
     return HomePageState();
@@ -14,38 +17,10 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-              currentAccountPicture: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.network(
-                    'https://avatars.githubusercontent.com/u/14067200?v=4'),
-              ),
-              accountName: Text('Erick Cordeiro'),
-              accountEmail: Text('erickcordeiroa@gmail.com'),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Início'),
-              onTap: () {
-                print("clicando no drawer");
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Sair do sistema'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: CustomDrawer(),
       appBar: AppBar(
-        title: const Text('Home Page'),
-        actions: const [
+        title: Text('Home Page'),
+        actions: [
           CustomSwitcher(),
         ],
       ),
@@ -57,12 +32,12 @@ class HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("Contador: $count"),
-            const CustomSwitcher(),
+            CustomSwitcher(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
         onPressed: () {
           setState(() {
             count++;
@@ -73,9 +48,14 @@ class HomePageState extends State<HomePage> {
   }
 }
 
-class CustomSwitcher extends StatelessWidget {
-  const CustomSwitcher({super.key});
+class CustomSwitcher extends StatefulWidget {
+  CustomSwitcher({super.key});
 
+  @override
+  State<CustomSwitcher> createState() => _CustomSwitcherState();
+}
+
+class _CustomSwitcherState extends State<CustomSwitcher> {
   @override
   Widget build(BuildContext context) {
     return Switch(

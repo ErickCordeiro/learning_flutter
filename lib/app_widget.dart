@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/app_controller.dart';
+import 'package:flutter_application_1/pages/category/category.dart';
 import 'package:flutter_application_1/pages/home/home.dart';
 import 'package:flutter_application_1/pages/login/login.dart';
 import 'package:flutter_application_1/pages/recovery/recovery.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => LoginPage(),
             '/recovery': (context) => RecoveryPage(),
             '/home': (context) => HomePage(),
+            '/category': (context) => CategoryPage(),
           },
         );
       },
