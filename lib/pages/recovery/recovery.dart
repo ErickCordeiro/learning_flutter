@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RecoveryPage extends StatefulWidget {
+  const RecoveryPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RecoveryPage> createState() => _RecoveryPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RecoveryPageState extends State<RecoveryPage> {
   String emailField = '';
-  String passwordField = '';
 
   Widget _body() {
     return SingleChildScrollView(
@@ -35,7 +34,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Text(
-                'Por favor, realize o login para continuar',
+                'Para iniciar o processo de recuperação de senha de acesso ao Embalagens Retornáveis, digite seu e-mail.',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey[600],
                   fontWeight: FontWeight.normal,
@@ -61,49 +61,19 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                child: TextField(
-                  onChanged: (value) {
-                    passwordField = value;
-                  },
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (emailField == 'erickcordeiroa@gmail.com' &&
-                        passwordField == 'erick2020') {
-                      /** 
-                         * The pushName or push in navigation go to
-                         * next page with arrow for before page,
-                         * now pushReplacemant and pushReplacemantName 
-                         * destroy the before page.
-                        **/
-
-                      // ** Way correct do route navegation between pages **
-                      Navigator.of(context).pushReplacementNamed('/home');
-
-                      // ** Way manual do route navegation between pages **
-                      // Navigator.of(context).pushReplacement(
-                      //     MaterialPageRoute(builder: (context) => HomePage()));
-                    }
+                    Navigator.of(context).pushReplacementNamed('/');
                   },
-                  child: const Text('Entrar'),
+                  child: const Text('Enviar'),
                 ),
               ),
-              SizedBox(
+               SizedBox(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/recovery');
+                    Navigator.of(context).pushReplacementNamed('/');
                   },
-                  child: Text('Esqueceu sua senha?'),
+                  child: Text('Quero fazer o login!'),
                 ),
               )
             ],
@@ -116,11 +86,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          _body(),
-        ],
-      ),
-    );
+        body: Stack(
+      children: [
+        _body(),
+      ],
+    ));
   }
 }

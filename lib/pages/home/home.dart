@@ -14,6 +14,35 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              currentAccountPicture: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                    'https://avatars.githubusercontent.com/u/14067200?v=4'),
+              ),
+              accountName: Text('Erick Cordeiro'),
+              accountEmail: Text('erickcordeiroa@gmail.com'),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Início'),
+              onTap: () {
+                print("clicando no drawer");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Sair do sistema'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('Home Page'),
         actions: const [
@@ -50,10 +79,10 @@ class CustomSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-          value: AppController.instance.isDarkTheme,
-          onChanged: (value) {
-            AppController.instance.changeTheme();
-          },
-        );
+      value: AppController.instance.isDarkTheme,
+      onChanged: (value) {
+        AppController.instance.changeTheme();
+      },
+    );
   }
 }

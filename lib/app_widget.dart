@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/app_controller.dart';
 import 'package:flutter_application_1/pages/home/home.dart';
 import 'package:flutter_application_1/pages/login/login.dart';
+import 'package:flutter_application_1/pages/recovery/recovery.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => LoginPage(),
-            '/home': (context) => HomePage()
+            '/recovery': (context) => RecoveryPage(),
+            '/home': (context) => HomePage(),
           },
         );
       },
