@@ -72,59 +72,97 @@ class HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            return ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 32,
-              ),
+            return ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: store.state.value.length,
               itemBuilder: (_, index) {
                 final item = store.state.value[index];
-                return Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.network(
-                        item.thumbnail,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        item.title,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Image.network(
+                          item.thumbnail,
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
                         ),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              item.title,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'R\$ ${item.price.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            // Text(
+                            //   item.description,
+                            //   style: const TextStyle(
+                            //     color: Colors.black54,
+                            //     fontWeight: FontWeight.w400,
+                            //     fontSize: 16,
+                            //   ),
+                            //   overflow: TextOverflow.ellipsis,
+                            //   maxLines: 2,
+                            // ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
-                            'R\$ ${item.price}',
-                            style: const TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                            ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.remove, color: Colors.red),
+                                onPressed: () {
+                                  // Lógica para decrementar a quantidade
+                                },
+                              ),
+                              Text(
+                                '1', // Valor dinâmico para quantidade
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.add, color: Colors.green),
+                                onPressed: () {
+                                  // Lógica para incrementar a quantidade
+                                },
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.description,
-                            style: const TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                          ElevatedButton.icon(
+                            icon: Icon(Icons.shopping_cart),
+                            label: Text('Adicionar'),
+                            onPressed: () {
+                              // Lógica para adicionar ao carrinho
+                            },
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             );
