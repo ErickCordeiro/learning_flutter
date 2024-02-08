@@ -80,7 +80,7 @@ class HomePageState extends State<HomePage> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
@@ -95,7 +95,6 @@ class HomePageState extends State<HomePage> {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               item.title,
@@ -107,59 +106,66 @@ class HomePageState extends State<HomePage> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'R\$ ${item.price.toStringAsFixed(2)}',
+                              item.description,
                               style: const TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
                               ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                             ),
-                            const SizedBox(height: 4),
-                            // Text(
-                            //   item.description,
-                            //   style: const TextStyle(
-                            //     color: Colors.black54,
-                            //     fontWeight: FontWeight.w400,
-                            //     fontSize: 16,
-                            //   ),
-                            //   overflow: TextOverflow.ellipsis,
-                            //   maxLines: 2,
-                            // ),
+                            const SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'R\$ ${item.price.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.remove,
+                                        color: Colors.red,
+                                        size: 20,
+                                      ),
+                                      onPressed: () {
+                                        // Lógica para decrementar a quantidade
+                                      },
+                                      padding: EdgeInsets.zero,
+                                      constraints: BoxConstraints(),
+                                    ),
+                                    SizedBox(
+                                      width: 40,
+                                      child: Center(
+                                        child: Text(
+                                          '1',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(Icons.add,
+                                          color: Colors.red, size: 20),
+                                      onPressed: () {
+                                        // Lógica para decrementar a quantidade
+                                      },
+                                      padding: EdgeInsets.zero,
+                                      constraints: BoxConstraints(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.remove, color: Colors.red),
-                                onPressed: () {
-                                  // Lógica para decrementar a quantidade
-                                },
-                              ),
-                              Text(
-                                '1', // Valor dinâmico para quantidade
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.add, color: Colors.green),
-                                onPressed: () {
-                                  // Lógica para incrementar a quantidade
-                                },
-                              ),
-                            ],
-                          ),
-                          ElevatedButton.icon(
-                            icon: Icon(Icons.shopping_cart),
-                            label: Text('Adicionar'),
-                            onPressed: () {
-                              // Lógica para adicionar ao carrinho
-                            },
-                          ),
-                        ],
                       ),
                     ],
                   ),
